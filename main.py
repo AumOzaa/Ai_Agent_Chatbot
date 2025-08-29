@@ -6,6 +6,7 @@ from pydantic import BaseModel
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import PydanticOutputParser
 from langchain.agents import create_tool_calling_agent, AgentExecutor
+from langchain.llms import Ollama
 from tools import search_tool, save_tool,wiki_tool
 import os
 
@@ -19,6 +20,7 @@ class ResearchResponse(BaseModel):
 
 
 llm  = ChatGoogleGenerativeAI(model="gemini-2.5-flash",google_api_key=os.getenv("GEMINI_API_KEY"))
+
 parser = PydanticOutputParser(pydantic_object=ResearchResponse)
 
 prompt = ChatPromptTemplate.from_messages(
